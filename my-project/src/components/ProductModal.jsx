@@ -43,6 +43,7 @@ export default function ProductModal({ product, onClose }) {
             <div className="bg-gray-50 p-4 rounded-lg text-sm text-gray-600 mb-6">
               <p><strong>Tempi di realizzazione:</strong> Circa 10-15 giorni lavorativi.</p>
               <p><strong>Personalizzazione:</strong> Colori e dettagli concordabili via email.</p>
+              <p><strong>Prezzo:</strong> {product.price}</p>
             </div>
           </div>
 

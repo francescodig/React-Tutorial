@@ -1,64 +1,56 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
   return (
-    <header className="bg-white border-b border-gray-100">
-      <nav className="flex items-center justify-between px-4 py-3 max-w-5xl mx-auto relative z-50">
+    <header className="sticky top-0 z-50 w-full bg-[#F9F8F6] border-b border-[#E5DFD5]">
+      {/* Il contenitore deve avere 'relative' affinché il logo possa centrarsi su di esso */}
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between relative">
         
-        {/* Blocco Sinistro: Hamburger su mobile / Link su desktop */}
-        <div className="flex-1">
-          <button 
-            onClick={toggleMenu} 
-            className="text-2xl text-gray-800 md:hidden"
-            aria-label="Menu principale"
-          >
-            {isMenuOpen ? '✕' : '☰'}
-          </button>
-          
-          <div className="hidden md:flex gap-6 text-sm font-medium text-gray-700">
-            <Link to="/" className="hover:text-pink-500 transition-colors">Home</Link>
-            <Link to="/catalogo" className="hover:text-pink-500 transition-colors">Borse su ordinazione</Link>
-          </div>
+        {/* Blocco 1: Navigazione a sinistra (deve stare per primo nel codice) */}
+        <nav className="hidden md:flex items-center gap-8 text-xs uppercase tracking-[0.2em] font-medium text-[#524B44]">
+          <Link to="/" className="relative group py-2">
+            <span className="group-hover:text-[#181615] transition-colors">Home</span>
+            <span className="absolute bottom-1 left-0 w-0 h-[1px] bg-[#181615] transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link to="/about" className="relative group py-2">
+            <span className="group-hover:text-[#181615] transition-colors">About Me</span>
+            <span className="absolute bottom-1 left-0 w-0 h-[1px] bg-[#181615] transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+        </nav>
+
+        {/* Blocco 2: Logo al centro esatto (estratto dal flusso) */}
+        <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-none">
+          <Link to="/" className="pointer-events-auto hover:opacity-80 transition-opacity font-serif text-2xl tracking-widest text-[#181615] uppercase">
+            Actjtude
+          </Link>
         </div>
 
-        {/* Blocco Centrale: Logo con posizionamento assoluto per simmetria perfetta */}
-        <div className="absolute left-1/2 -translate-x-1/2">
-          <Link to="/" onClick={() => setIsMenuOpen(false)} className="flex flex-col items-center hover:opacity-75 transition-opacity">
-            <h1 className="text-xl font-semibold tracking-wide text-blue-900">
-              Fili e Capricci
-            </h1>
-            <span className="text-xs text-blue-500 italic">
-              Borse all'uncinetto
+        {/* Blocco 3: Azione a destra (deve chiudere la barra) */}
+        <div className="flex items-center">
+          <Link 
+            to="/catalogo" 
+            className="group flex items-center gap-2 text-[#524B44] hover:text-[#181615] transition-colors p-1"
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="1.2" 
+              className="w-5 h-5 transition-transform duration-300 group-hover:scale-110"
+            >
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+            </svg>
+            <span className="hidden sm:inline-block text-xs uppercase tracking-widest font-medium">
+              Collezione
             </span>
           </Link>
         </div>
-        
-        {/* Blocco Destro: Icona Contatti */}
-        <div className="flex-1 flex justify-end">
-          <button aria-label="Invia una richiesta email" className="text-2xl text-gray-800">
-            ✉️
-          </button>
-        </div>
 
-      </nav>
-
-      {/* Overlay Mobile: forzatamente nascosto (md:hidden) per evitare bug grafici se si allarga la finestra */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 bg-white pt-24 px-6 z-40 overflow-y-auto md:hidden">
-          <div className="flex flex-col gap-6 text-lg text-gray-800 max-w-5xl mx-auto">
-            <Link to="/" onClick={toggleMenu} className="border-b border-gray-100 pb-4 hover:text-pink-400 transition-colors">
-              Home
-            </Link>
-            <Link to="/catalogo" onClick={toggleMenu} className="border-b border-gray-100 pb-4 hover:text-pink-400 transition-colors">
-              Borse su ordinazione
-            </Link>
-          </div>
-        </div>
-      )}
+      </div>
     </header>
   );
 }

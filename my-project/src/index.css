@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+:root {
+  /* La palette dell'Atelier Fili e Capricci */
+  --color-calce: #F9F8F6;    /* Sfondo principale chiaro e materico */
+  --color-carbone: #181615;  /* Sfondi scuri e titoli principali */
+  --color-tortora: #7C7267;  /* Dettagli, metadati e accenti neutri */
+  --color-sabbia: #E5DFD5;   /* Bordi, linee divisorie e sfondi secondari */
+  --color-moka: #524B44;     /* Testo dei paragrafi e descrizioni */
+}
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #FAF8F5;
+    color: #2D2727;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+}
+
+/* Animazione di scorrimento continuo per la galleria */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+/* Mette in pausa lo scorrimento quando il mouse passa sopra la galleria */
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
