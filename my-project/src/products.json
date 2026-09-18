@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Clic Clac Intrecci",
+    "subtitle": "Pochette rigida con chiusura a scatto",
+    "price": "€ 120",
+    "image": "/images/borsa1.jpeg"
+  },
+  {
+    "id": 2,
+    "name": "Ava Bag",
+    "subtitle": "Tracolla morbida con dettagli in metallo",
+    "price": "€ 150",
+    "image": "/images/borsa2.jpeg"
+  },
+  {
+    "id": 3,
+    "name": "Tote Bag Estiva",
+    "subtitle": "Modello capiente a lavorazione aperta",
+    "price": "€ 180",
+    "image": "/images/borsa3.jpeg"
+  },
+  {
+    "id": 4,
+    "name": "Pochette Sera",
+    "subtitle": "Mini bag da polso in filato metallizzato",
+    "price": "€ 100",
+    "image": "/images/borsa4.jpeg"
+  },
+  {
+    "id": 5,
+    "name": "Sacca Nomade",
+    "subtitle": "Modello morbido a sacco con coulisse",
+    "price": "€ 160",
+    "image": "/images/borsa1.jpeg"
+  },
+  {
+    "id": 6,
+    "name": "Mini Tracolla Luce",
+    "subtitle": "Forma geometrica compatta strutturata",
+    "price": "€ 135",
+    "image": "/images/borsa2.jpeg"
+  },
+  {
+    "id": 7,
+    "name": "Secchiello Corda",
+    "subtitle": "Struttura verticale rigida bicolore",
+    "price": "€ 170",
+    "image": "/images/borsa3.jpeg"
+  },
+  {
+    "id": 8,
+    "name": "Shopper Minimal",
+    "subtitle": "Linea essenziale per l'uso quotidiano",
+    "price": "€ 190",
+    "image": "/images/borsa4.jpeg"
+  }
+]

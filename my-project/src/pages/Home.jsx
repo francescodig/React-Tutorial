@@ -87,7 +87,7 @@ export default function Home() {
           {/* Bottone centrale */}
           <div className="mt-14 text-center">
             <Link
-              to="/about"
+              to="/aboutme"
               className="inline-flex justify-center items-center px-8 py-3.5 rounded-full text-xs uppercase tracking-widest font-medium border border-[#181615] text-[#181615] hover:bg-[#181615] hover:text-[#F9F8F6] transition-colors duration-200"
             >
               About Me

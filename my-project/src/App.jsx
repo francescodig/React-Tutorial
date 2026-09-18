@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import Footer from './components/Footer'; 
 import ScrollToTop from './components/ScrollToTop';
+import About from './pages/About';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalogo" element={<Catalog />} />
+          <Route path="/aboutme" element={<About />} />
         </Routes>
       </div>
 

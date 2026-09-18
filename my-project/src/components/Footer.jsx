@@ -7,12 +7,9 @@ export default function Footer() {
         
         {/* Blocco Brand */}
         <div className="flex flex-col items-center md:items-start">
-          <Link to="/" className="font-serif text-2xl text-carbone tracking-tight hover:opacity-80 transition-opacity">
+          <Link to="/" className="font-display text-2xl text-carbone tracking-tight hover:opacity-80 transition-opacity">
             ACTJTUDE
           </Link>
-          <span className="text-xs text-tortora mt-2 uppercase tracking-widest">
-            Atelier all'uncinetto
-          </span>
         </div>
 
         {/* Canali Essenziali */}
@@ -35,7 +32,7 @@ export default function Footer() {
 
         {/* Chiusura e Diritti */}
         <div className="text-[11px] text-tortora tracking-wide">
-          © {new Date().getFullYear()} ACTJTUDE. Pezzi unici.
+          © {new Date().getFullYear()} ACTJTUDE. 
         </div>
 
       </div>

@@ -2,50 +2,60 @@ import ProductGallery from '../components/ProductGallery';
 
 export default function Catalog() {
   return (
-    <div className="min-h-screen bg-[#F9F8F6] text-[#181615] antialiased">
+    <div className="min-h-screen bg-calce text-carbone antialiased">
       
-      {/* Intestazione Editoriale con ancoraggio visivo */}
-      <header className="relative pt-24 pb-16 px-6 text-center max-w-3xl mx-auto">
-        {/* Linea verticale decorativa per spezzare il vuoto */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-12 bg-[#E5DFD5]"></div>
+      {/* Contenitore principale a registro editoriale */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 pb-24">
         
-        <span className="text-xs uppercase tracking-[0.25em] text-[#7C7267] font-medium block mb-4 mt-6">
-          La Collezione
-        </span>
-        <h1 className="font-serif text-4xl sm:text-5xl font-normal tracking-tight mb-6">
-          Modelli e Intrecci
-        </h1>
-        <p className="text-[#524B44] text-base leading-relaxed font-light">
-          Esplora le forme e i volumi delle nostre creazioni. Ogni modello funge da base di partenza per la tua borsa su misura, realizzata a mano scegliendo il filato e i dettagli metallici che preferisci.
-        </p>
-      </header>
+        {/* Testata Asimmetrica */}
+        <header className="border-b border-sabbia pb-10 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="max-w-xl">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-[10px] uppercase tracking-[0.3em] text-tortora font-medium">
+                Archivio Modelli
+              </span>
+              <span className="w-8 h-px bg-sabbia"></span>
+            </div>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight uppercase">
+              Modelli &amp; <br className="hidden sm:inline" /> Intrecci
+            </h1>
+          </div>
 
-      {/* Contenitore della Galleria */}
-      <main className="pb-12">
-        <ProductGallery />
-      </main>
-      
-      {/* Sezione Call to Action - Blocco a contrasto scuro */}
-      <section className="bg-[#181615] text-[#F9F8F6] py-24 px-6 mt-12 border-t border-[#2A2624]">
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
-          <span className="text-xs uppercase tracking-[0.25em] text-[#A69C91] font-medium block mb-4">
-            Visione su Misura
+          <div className="max-w-sm text-left md:text-right">
+            <p className="text-xs uppercase tracking-widest text-tortora mb-2">
+              Edizione Continua
+            </p>
+            <p className="text-moka text-sm font-light leading-relaxed">
+              Volumi strutturati e filati lavorati a nodo singolo. Ogni forma funge da prototipo aperto: scegli le dimensioni e definisci l'intreccio su misura.
+            </p>
+          </div>
+        </header>
+
+        {/* Griglia Prodotti */}
+        <main className="mb-20">
+          <ProductGallery />
+        </main>
+
+        {/* Chiusura Bespoke in Palette (Niente blocchi neri) */}
+        <section className="border border-sabbia bg-sabbia/20 p-8 sm:p-14 text-center max-w-4xl mx-auto">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-tortora font-medium block mb-3">
+            Creazione Dedicata
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-normal mb-6">
-            Non trovi la forma perfetta?
+          <h2 className="font-display text-2xl sm:text-3xl font-normal uppercase tracking-wide text-carbone mb-4">
+            Un'idea non presente in collezione?
           </h2>
-          <p className="text-[#D3CBC0] text-base leading-relaxed font-light max-w-xl mb-10">
-            L'artigianato non ha limiti di catalogo. Se hai in mente un design specifico, un volume diverso o un abbinamento di colori particolare, possiamo progettare e realizzare un modello interamente nuovo, partendo da zero.
+          <p className="text-moka text-sm font-light leading-relaxed max-w-lg mx-auto mb-8">
+            Dalla scelta della sagoma metallica alla combinazione di colore del filato: realizziamo pezzi unici partendo da un disegno concordato insieme.
           </p>
-          <a 
+          <a
             href="mailto:ordini@filiecapricci.it"
-            className="inline-flex justify-center items-center px-10 py-4 rounded-full text-xs uppercase tracking-widest font-medium bg-[#F9F8F6] text-[#181615] hover:bg-[#E5DFD5] transition-colors duration-300 shadow-lg"
+            className="inline-block border border-carbone text-carbone px-8 py-3 text-xs uppercase tracking-[0.2em] font-medium hover:bg-carbone hover:text-calce transition-all duration-300"
           >
-            Raccontami la tua idea
+            Avvia un progetto su misura
           </a>
-        </div>
-      </section>
-      
+        </section>
+
+      </div>
     </div>
   );
 }

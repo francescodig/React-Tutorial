@@ -1,30 +1,33 @@
 @import "tailwindcss";
 
-:root {
-  /* La palette dell'Atelier Fili e Capricci */
-  --color-calce: #F9F8F6;    /* Sfondo principale chiaro e materico */
-  --color-carbone: #181615;  /* Sfondi scuri e titoli principali */
-  --color-tortora: #7C7267;  /* Dettagli, metadati e accenti neutri */
-  --color-sabbia: #E5DFD5;   /* Bordi, linee divisorie e sfondi secondari */
-  --color-moka: #524B44;     /* Testo dei paragrafi e descrizioni */
+@theme {
+  /* Mantieni qui i colori della tua palette (spero tu sia tornato al color Calce!) */
+  --color-calce: #F9F8F6;    
+  --color-carbone: #181615;  
+  --color-tortora: #7C7267;  
+  --color-sabbia: #E5DFD5;   
+  --color-moka: #524B44;     
 }
 
 @layer base {
   body {
+    /* Il font per i paragrafi e i testi lunghi */
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #FAF8F5;
-    color: #2D2727;
+    background-color: var(--color-calce);
+    color: var(--color-carbone);
   }
 
-  h1, h2, h3, .font-serif {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+  /* Applichiamo Julius automaticamente a tutti i titoli */
+  h1, h2, h3, .font-display {
+    font-family: 'Julius Sans One', sans-serif;
+    letter-spacing: 0.05em; /* Aggiunge un po' di respiro tra le lettere */
+    font-weight: 400;
   }
 }
 
-/* Animazione di scorrimento continuo per la galleria */
 @keyframes marquee {
   0% {
-    transform: translateX(0);
+    transform: translateX(0%);
   }
   100% {
     transform: translateX(-50%);
@@ -37,7 +40,7 @@
   animation: marquee 35s linear infinite;
 }
 
-/* Mette in pausa lo scorrimento quando il mouse passa sopra la galleria */
+/* Pausa elegante quando l'utente passa sopra con il cursore */
 .animate-marquee:hover {
   animation-play-state: paused;
 }

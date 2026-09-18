@@ -12,7 +12,7 @@ export default function Navbar() {
             <span className="group-hover:text-[#181615] transition-colors">Home</span>
             <span className="absolute bottom-1 left-0 w-0 h-[1px] bg-[#181615] transition-all duration-300 group-hover:w-full"></span>
           </Link>
-          <Link to="/about" className="relative group py-2">
+          <Link to="/aboutme" className="relative group py-2">
             <span className="group-hover:text-[#181615] transition-colors">About Me</span>
             <span className="absolute bottom-1 left-0 w-0 h-[1px] bg-[#181615] transition-all duration-300 group-hover:w-full"></span>
           </Link>
@@ -20,7 +20,7 @@ export default function Navbar() {
 
         {/* Blocco 2: Logo al centro esatto (estratto dal flusso) */}
         <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-none">
-          <Link to="/" className="pointer-events-auto hover:opacity-80 transition-opacity font-serif text-2xl tracking-widest text-[#181615] uppercase">
+          <Link to="/" className="pointer-events-auto hover:opacity-80 transition-opacity font-display text-2xl tracking-widest text-[#181615] uppercase">
             Actjtude
           </Link>
         </div>
