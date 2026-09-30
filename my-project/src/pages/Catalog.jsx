@@ -36,7 +36,6 @@ export default function Catalog() {
           <ProductGallery />
         </main>
 
-        {/* Chiusura Bespoke in Palette (Niente blocchi neri) */}
         <section className="border border-sabbia bg-sabbia/20 p-8 sm:p-14 text-center max-w-4xl mx-auto">
           <span className="text-[10px] uppercase tracking-[0.3em] text-tortora font-medium block mb-3">
             Creazione Dedicata

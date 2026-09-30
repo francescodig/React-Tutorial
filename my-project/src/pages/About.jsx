@@ -4,14 +4,12 @@ export default function About() {
       
       <div className="max-w-5xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-        
-        
-        {/* Colonna Sinistra: Composizione Editoriale a Strati */}
+        {/* Colonna Sinistra: Immagine Principale */}
         <div className="relative flex justify-center md:justify-start">
           
 
 
-          {/* Riquadro Fotografico Principale */}
+          {/* Riquadro Foto */}
           <div className="relative z-10 w-full max-w-sm sm:max-w-md aspect-[4/5] overflow-hidden bg-[#F0ECE6] shadow-md">
             <img
               src="/images/bobby.jpeg"
@@ -22,7 +20,7 @@ export default function About() {
           
         </div>
 
-        {/* Colonna Destra: Informazioni e Spazio Narrativo */}
+        {/* Colonna Destra: Story */}
         <div className="flex flex-col justify-center text-left">
           
           <div className="inline-flex items-center gap-2 mb-4">
@@ -37,19 +35,19 @@ export default function About() {
           </h1>
 
           <span className="text-xs uppercase tracking-[0.2em] text-moka font-medium block mb-6">
-            Mara — Designer & Fondatrice
+            Serena — Designer & Fondatrice
           </span>
 
           <div className="space-y-5 text-moka text-sm sm:text-base leading-relaxed font-light mb-8">
             <p>
-              Fili e Capricci nasce dal desiderio di dare forma e sostanza a un ritmo diverso. Ogni borsa è un pezzo unico, lavorato interamente a mano tramite l'intreccio meticoloso di filati pregiati e minuterie ricercate.
+              Actjtude nasce dal desiderio di dare forma e sostanza a un ritmo diverso. Ogni borsa è un pezzo unico, lavorato interamente a mano tramite l'intreccio meticoloso di filati pregiati e minuterie ricercate.
             </p>
             <p>
               Non si tratta di semplice uncinetto, ma di una vera e propria scultura tessile: ogni modello prende vita dall'incontro tra la disciplina del nodo e la personalità di chi lo indosserà.
             </p>
           </div>
 
-          {/* Citazione in riquadro caldo per arricchire il blocco visivo */}
+          {/* Riquadro */}
           <div className="bg-sabbia/40 border-l-2 border-tortora p-4 mb-8 text-xs leading-relaxed text-moka italic font-serif">
             "La perfezione industriale è replicabile ovunque. Il valore di un manufatto artigianale risiede nel tempo irripetibile che gli viene dedicato."
           </div>
@@ -85,7 +83,7 @@ export default function About() {
             </a>
 
             <a 
-              href="mailto:ordini@filiecapricci.it" 
+              href="mailto:info@actjtude.com" 
               className="p-1 hover:text-carbone transition-all duration-300 hover:-translate-y-0.5"
               aria-label="Email"
             >

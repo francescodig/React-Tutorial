@@ -5,14 +5,14 @@ export default function Footer() {
     <footer className="w-full bg-calce border-t border-sabbia py-12 px-6 mt-auto">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
         
-        {/* Blocco Brand */}
+        
         <div className="flex flex-col items-center md:items-start">
           <Link to="/" className="font-display text-2xl text-carbone tracking-tight hover:opacity-80 transition-opacity">
             ACTJTUDE
           </Link>
         </div>
 
-        {/* Canali Essenziali */}
+        
         <div className="flex gap-8 text-xs font-medium uppercase tracking-widest text-moka">
           <a 
             href="https://instagram.com" 
@@ -23,7 +23,7 @@ export default function Footer() {
             Instagram
           </a>
           <a 
-            href="mailto:ordini@filiecapricci.it" 
+            href="mailto:info@actjtude.com" 
             className="hover:text-carbone transition-colors"
           >
             Contatto Mail

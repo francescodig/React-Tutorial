@@ -1,18 +1,18 @@
 export default function ProductModal({ product, onClose }) {
   if (!product) return null;
 
-  const emailDestinazione = "ordini@filiecapricci.it";
+  const emailDestinazione = "info@actjtude.com";
   const oggetto = encodeURIComponent(`Richiesta info: ${product.name}`);
   const corpo = encodeURIComponent(
-    `Ciao Mara,\n\nvorrei ordinare il modello "${product.name}".\nPossiamo definire insieme i dettagli e i colori?\n\nGrazie!`
-  );
+    `Ciao,\n\nvorrei ordinare il modello "${product.name}".\nPossiamo definire insieme i dettagli e i colori?\n\nGrazie!`
+  ); // DEVO MODIFICARE QUESTA ROBA QUA IN MODO DA EVITARE IL REDIRECT DIRETTAMENTE ALLA MAIL, MA APRIRE UN FORM CHE POI MI ARRIVA VIA EMAIL
   const mailtoLink = `mailto:${emailDestinazione}?subject=${oggetto}&body=${corpo}`;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full relative overflow-hidden flex flex-col md:flex-row h-[80vh] md:h-auto max-h-[600px]">
         
-        {/* Pulsante di chiusura (X) posizionato in alto a destra */}
+       
         <button 
           onClick={onClose} 
           className="absolute top-4 right-4 z-10 bg-white rounded-full p-2 text-gray-500 hover:text-black shadow-sm"
@@ -21,7 +21,6 @@ export default function ProductModal({ product, onClose }) {
           ✕
         </button>
 
-        {/* Sezione immagine (occupa metà spazio su desktop) */}
         <div className="w-full md:w-1/2 h-64 md:h-auto">
           <img 
             src={product.image} 
@@ -41,8 +40,8 @@ export default function ProductModal({ product, onClose }) {
               {product.description}
             </p>
             <div className="bg-gray-50 p-4 rounded-lg text-sm text-gray-600 mb-6">
-              <p><strong>Tempi di realizzazione:</strong> Circa 10-15 giorni lavorativi.</p>
-              <p><strong>Personalizzazione:</strong> Colori e dettagli concordabili via email.</p>
+              <p><strong>Tempi di realizzazione:</strong> {product.madeTime}.</p>
+              <p><strong>Personalizzazione:</strong> Colori e dettagli concordabili via email.</p> //TOGLIERE COLORI HARDCODED
               <p><strong>Prezzo:</strong> {product.price}</p>
             </div>
           </div>

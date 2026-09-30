@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full bg-[#F9F8F6] border-b border-[#E5DFD5]">
-      {/* Il contenitore deve avere 'relative' affinché il logo possa centrarsi su di esso */}
+
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between relative">
         
-        {/* Blocco 1: Navigazione a sinistra (deve stare per primo nel codice) */}
+        {/*Colonna Sinistra*/}
         <nav className="hidden md:flex items-center gap-8 text-xs uppercase tracking-[0.2em] font-medium text-[#524B44]">
           <Link to="/" className="relative group py-2">
             <span className="group-hover:text-[#181615] transition-colors">Home</span>
@@ -18,14 +18,14 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        {/* Blocco 2: Logo al centro esatto (estratto dal flusso) */}
+        {/*Logo*/}
         <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-none">
           <Link to="/" className="pointer-events-auto hover:opacity-80 transition-opacity font-display text-2xl tracking-widest text-[#181615] uppercase">
             Actjtude
           </Link>
         </div>
 
-        {/* Blocco 3: Azione a destra (deve chiudere la barra) */}
+        {/*Colonna Destra*/}
         <div className="flex items-center">
           <Link 
             to="/catalogo" 
