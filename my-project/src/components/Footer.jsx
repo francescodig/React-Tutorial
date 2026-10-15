@@ -15,7 +15,7 @@ export default function Footer() {
         
         <div className="flex gap-8 text-xs font-medium uppercase tracking-widest text-moka">
           <a 
-            href="https://instagram.com" 
+            href="https://www.instagram.com/actjtude_/" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="hover:text-carbone transition-colors"

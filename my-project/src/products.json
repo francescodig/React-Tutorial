@@ -1,66 +1,47 @@
 [
   {
     "id": 1,
-    "name": "Clic Clac Intrecci",
-    "subtitle": "Pochette rigida con chiusura a scatto",
-    "price": "€ 120",
-    "image": "/images/borsa1.jpeg",
+    "name": "Luna Rosè",
+    "details": "Interno foderato a mano.",
+    "description": "Clutch in lycra con particolare lavorazione tridimensionale. Il design è completato da un manico intrecciato effetto corda metallizata, che crea un elegante constrato con il blu. Chiusura metallica 20 cm. Disponibile in tutte le combinazioni di colore.",
+    "price": "€ 55",
+    "images": ["/images/borsa1.jpeg", "/images/borsa2.jpeg"],
     "madeTime": "Circa 10-15 giorni lavorativi"
   },
   {
     "id": 2,
-    "name": "Ava Bag",
-    "subtitle": "Tracolla morbida con dettagli in metallo",
-    "price": "€ 150",
-    "image": "/images/borsa2.jpeg",
+    "name": "Nebula Pearl",
+    "details": "Interno foderato a mano.",
+    "description": "Clutch in cotone impreziosita da perle applicate singolarmente. Chiusura metallica 19 cm con manico rotondo. Disponibile in tutti i colori e combinazioni di colore.",
+    "price": "€ 65",
+    "images": ["/images/borsa2.jpeg"],
     "madeTime": "Circa 5-7 giorni lavorativi"
   },
   {
     "id": 3,
-    "name": "Tote Bag Estiva",
-    "subtitle": "Modello capiente a lavorazione aperta",
-    "price": "€ 180",
-    "image": "/images/borsa3.jpeg",
+    "name": "Metallic Taupe",
+    "description": "Realizzata con un particolare intreccio effetto metallizzato e tridimensionale. Chiusura metallica 19 cm. Un modello ricercato, ideale per chi ama pezzi unici, artigianali e dal forte impatto visivo.",
+    "details": "Interno foderato a mano.",
+    "price": "€ 60",
+    "images": ["/images/borsa3.jpeg"],
     "madeTime": "Circa 10-12 giorni lavorativi"
   },
   {
     "id": 4,
-    "name": "Pochette Sera",
-    "subtitle": "Mini bag da polso in filato metallizzato",
-    "price": "€ 100",
-    "image": "/images/borsa4.jpeg",
+    "name": "Naja Bag",
+    "description": "Una borsa dal carattere deciso e sofisticato arricchita da frange laterali che donano movimento e personalità al modello. Chiusura metallica 27 cm. Disponibile in tutti i colori. La catena dorata permette di indossare la borsa comodamente a spalla o a tracolla. Scegli se aggiungerla e personalizza la tua borsa secondo il tuo stile.",
+    "details": "Interno foderato a mano.",
+    "price": "€ 70",
+    "images": ["/images/borsa4.jpeg"],
     "madeTime": "Circa 4-8 giorni lavorativi"
   },
   {
     "id": 5,
-    "name": "Sacca Nomade",
-    "subtitle": "Modello morbido a sacco con coulisse",
-    "price": "€ 160",
-    "image": "/images/borsa1.jpeg",
-    "madeTime": "Circa 10-15 giorni lavorativi"
-  },
-  {
-    "id": 6,
-    "name": "Mini Tracolla Luce",
-    "subtitle": "Forma geometrica compatta strutturata",
-    "price": "€ 135",
-    "image": "/images/borsa2.jpeg",
-    "madeTime": "Circa 10-15 giorni lavorativi"
-  },
-  {
-    "id": 7,
-    "name": "Secchiello Corda",
-    "subtitle": "Struttura verticale rigida bicolore",
-    "price": "€ 170",
-    "image": "/images/borsa3.jpeg",
-    "madeTime": "Circa 10-15 giorni lavorativi"
-  },
-  {
-    "id": 8,
-    "name": "Shopper Minimal",
-    "subtitle": "Linea essenziale per l'uso quotidiano",
-    "price": "€ 190",
-    "image": "/images/borsa4.jpeg",
+    "name": "Classic Clutch",
+    "description": "Può essere portata comodamente a mano o a spalla grazie all'aggiunta della tracolla. Scegli se aggiungerla e personalizzarla secondo il tuo stile. Chiusura metallica 19 cm.",
+    "details": "Interno foderato a mano.",
+    "price": "€ 50",
+    "images": ["/images/borsa1.jpeg"],
     "madeTime": "Circa 10-15 giorni lavorativi"
   }
 ]

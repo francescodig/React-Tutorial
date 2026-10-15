@@ -38,19 +38,19 @@ export default function Catalog() {
 
         <section className="border border-sabbia bg-sabbia/20 p-8 sm:p-14 text-center max-w-4xl mx-auto">
           <span className="text-[10px] uppercase tracking-[0.3em] text-tortora font-medium block mb-3">
-            Creazione Dedicata
+            Visione su misura
           </span>
           <h2 className="font-display text-2xl sm:text-3xl font-normal uppercase tracking-wide text-carbone mb-4">
-            Un'idea non presente in collezione?
+            Non trovi la forma perfetta?
           </h2>
           <p className="text-moka text-sm font-light leading-relaxed max-w-lg mx-auto mb-8">
-            Dalla scelta della sagoma metallica alla combinazione di colore del filato: realizziamo pezzi unici partendo da un disegno concordato insieme.
+            L'artigianato non ha limiti di catalogo. Se hai in mente un design specifico, un volume diverso o un abbinamento di colori particolare, possiamo progettare e realizzare un modello interamente nuovo, partendo da zero
           </p>
           <a
             href="mailto:ordini@filiecapricci.it"
             className="inline-block border border-carbone text-carbone px-8 py-3 text-xs uppercase tracking-[0.2em] font-medium hover:bg-carbone hover:text-calce transition-all duration-300"
           >
-            Avvia un progetto su misura
+            Raccontami la tua idea
           </a>
         </section>
 

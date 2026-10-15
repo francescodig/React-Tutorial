@@ -3,7 +3,7 @@ export default function ProductCard({ product, onClick }) {
     <div className="flex flex-col group cursor-pointer" onClick={onClick}>
       <div className="aspect-square rounded-2xl overflow-hidden bg-gray-100 transition-transform duration-300 group-hover:scale-105 shadow-sm">
         <img 
-          src={product.image} 
+          src={product.images[0] || product.images} 
           alt={product.name} 
           className="w-full h-full object-cover" 
         />

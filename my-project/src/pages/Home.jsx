@@ -1,14 +1,10 @@
 import { Link } from 'react-router-dom';
+import products from '../products.json';
 
 export default function Home() {
-  const galleryImages = [
-    { id: 1, src: '/images/borsa1.jpeg', title: 'Clic Clac Intreccio' },
-    { id: 2, src: '/images/borsa2.jpeg', title: 'Ava Bag' },
-    { id: 3, src: '/images/borsa3.jpeg', title: 'Tote Bag Estiva' },
-    { id: 4, src: '/images/borsa4.jpeg', title: 'Pochette Sera' },
-  ];
 
-  const duplicatedImages = [...galleryImages, ...galleryImages];
+
+  const duplicatedImages = [...products, ...products]; // Duplica l'array per creare l'effetto di scorrimento continuo
 
   return (
     <div className="bg-[#F9F8F6] text-[#181615] antialiased">
@@ -116,14 +112,14 @@ export default function Home() {
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-[#EFECE6] mb-4 shadow-sm">
                 <Link to="/catalogo" className="w-full h-full block">
                   <img
-                    src={item.src}
-                    alt={item.title}
+                    src={item.images[0] || item.images}
+                    alt={item.name}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
                 </Link>
                 </div>
-                <h4 className="font-serif text-lg font-medium text-[#181615]">{item.title}</h4>
-                <p className="text-xs text-[#7C7267] uppercase tracking-wider mt-0.5">Pezzo artigianale</p>
+                <h4 className="font-serif text-lg font-medium text-[#181615]">{item.name}</h4>
+                <p className="text-xs text-[#7C7267] uppercase tracking-wider mt-0.5">{item.price}</p>
               </div>
             ))}
           </div>
