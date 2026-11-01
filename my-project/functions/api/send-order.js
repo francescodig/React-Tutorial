@@ -1,46 +1,63 @@
 import nodemailer from 'nodemailer';
 
 export async function onRequestPost(context) {
-  try {
-    const { prodotto, prezzo, name, email, phone, message } = await context.request.json();
+  let transporter = null; // Dichiarazione nello scope principale della funzione
 
-    // Inizializza la connessione SMTP con le variabili impostate su Cloudflare
-    //Prova
-    const transporter = nodemailer.createTransport({
-      host: context.env.SMTP_HOST,
+  try {
+    const { SMTP_HOST, SMTP_USER, SMTP_PASS } = context.env || {};
+
+    if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
+      return Response.json(
+        { success: false, error: 'Variabili d\'ambiente SMTP non trovate in context.env' },
+        { status: 500 }
+      );
+    }
+
+    const body = await context.request.json();
+    const { prodotto, prezzo, name, email, phone, message } = body;
+
+    // Assegnazione della variabile esterna senza ridefinirla con "const" o "let"
+    transporter = nodemailer.createTransport({
+      host: SMTP_HOST,
       port: 465,
       secure: true,
-      connectionTimeout: 3000,
-      greetingTimeout: 3000,
-      socketTimeout: 3000,
-      auth: { user: context.env.SMTP_USER, pass: context.env.SMTP_PASS }
+      connectionTimeout: 5000,
+      greetingTimeout: 5000,
+      socketTimeout: 5000,
+      auth: {
+        user: SMTP_USER,
+        pass: SMTP_PASS,
+      },
     });
 
-    // Invia la mail
     await transporter.sendMail({
-      from: `"Sito Actjtude" <${context.env.SMTP_USER}>`,
-      to: context.env.SMTP_USER,
+      from: `"Sito Serena" <${SMTP_USER}>`,
+      to: SMTP_USER,
       replyTo: email,
-      subject: `Nuova richiesta ordine per: ${prodotto}`,
+      subject: `Nuova richiesta ordine: ${prodotto || 'Prodotto'}`,
       html: `
-        <h2>Nuova richiesta ordine ricevuta</h2>
-        <p><strong>Prodotto:</strong> ${prodotto} (${prezzo})</p>
-        <hr />
-        <h3>Dati Cliente:</h3>
-        <p><strong>Nome:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Telefono:</strong> ${phone || 'Non specificato'}</p>
+        <h2>Nuova richiesta d'ordine</h2>
+        <p><strong>Prodotto:</strong> ${prodotto || 'N/D'} (${prezzo || 'N/D'})</p>
+        <p><strong>Cliente:</strong> ${name || 'N/D'}</p>
+        <p><strong>Email cliente:</strong> ${email || 'N/D'}</p>
+        <p><strong>Telefono:</strong> ${phone || 'Non indicato'}</p>
         <p><strong>Messaggio:</strong> ${message || 'Nessuna nota'}</p>
       `,
     });
 
     return Response.json({ success: true });
   } catch (error) {
-    return Response.json({ success: false, error: error.message }, { status: 500 });
+    return Response.json(
+      { success: false, error: error.message || 'Errore durante l\'invio dell\'email' },
+      { status: 500 }
+    );
   } finally {
-    // Chiudi la connessione SMTP
     if (transporter) {
-      transporter.close();
+      try {
+        transporter.close();
+      } catch {
+        // Ignora eventuali errori durante la disconnessione del socket
+      }
     }
   }
 }
