@@ -5,6 +5,7 @@ export async function onRequestPost(context) {
     const { prodotto, prezzo, name, email, phone, message } = await context.request.json();
 
     // Inizializza la connessione SMTP con le variabili impostate su Cloudflare
+    //Prova
     const transporter = nodemailer.createTransport({
       host: context.env.SMTP_HOST,
       port: 465,
