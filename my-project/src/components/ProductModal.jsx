@@ -35,8 +35,7 @@ export default function ProductModal({ product, onClose }) {
   setStatus('submitting');
 
   try {
-    // Nel caso di server Express esterno usa l'URL completo (es. 'https://api.tuosite.com/api/send-order')
-    const response = await fetch('/api/send-order.js', {
+    const response = await fetch('/api/send-order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
