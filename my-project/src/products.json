@@ -5,7 +5,7 @@
     "details": "Interno foderato a mano.",
     "description": "Clutch in lycra con particolare lavorazione tridimensionale. Il design è completato da un manico intrecciato effetto corda metallizata, che crea un elegante constrato con il blu. Chiusura metallica 20 cm. Disponibile in tutte le combinazioni di colore.",
     "price": "€ 55",
-    "images": ["/images/borsa1.jpeg", "/images/borsa2.jpeg"],
+    "images": ["/images/borsa1.jpeg", "/images/borsa1v2.jpeg", "/images/borsa1v3.jpeg"],
     "madeTime": "Circa 10-15 giorni lavorativi"
   },
   {
@@ -41,7 +41,7 @@
     "description": "Può essere portata comodamente a mano o a spalla grazie all'aggiunta della tracolla. Scegli se aggiungerla e personalizzarla secondo il tuo stile. Chiusura metallica 19 cm.",
     "details": "Interno foderato a mano.",
     "price": "€ 50",
-    "images": ["/images/borsa1.jpeg"],
+    "images": ["/images/borsa5.jpeg", "/images/borsa5v2.jpeg"],
     "madeTime": "Circa 10-15 giorni lavorativi"
   }
 ]

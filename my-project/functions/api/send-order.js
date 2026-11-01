@@ -2,47 +2,39 @@ import nodemailer from 'nodemailer';
 
 export async function onRequestPost(context) {
   try {
-    const data = await context.request.json();
-    const { name, email, phone, message, prodotto, prezzo } = data;
+    const { prodotto, prezzo, name, email, phone, message } = await context.request.json();
 
-    // Crea il trasportatore SMTP usando le variabili d'ambiente protette
+    // Inizializza la connessione SMTP con le variabili impostate su Cloudflare
     const transporter = nodemailer.createTransport({
       host: context.env.SMTP_HOST,
       port: 465,
-      secure: true, // true per porta 465
+      secure: true,
       auth: {
         user: context.env.SMTP_USER,
         pass: context.env.SMTP_PASS,
       },
     });
 
-    // Invia l'email direttamente dalla tua casella a te stesso
+    // Invia la mail
     await transporter.sendMail({
       from: `"Sito Actjtude" <${context.env.SMTP_USER}>`,
-      to: context.env.SMTP_USER, // Ricevi l'ordine sulla tua mail
-      replyTo: email, // Rispondendo alla mail scriverai direttamente al cliente
+      to: context.env.SMTP_USER,
+      replyTo: email,
       subject: `Nuova richiesta ordine per: ${prodotto}`,
       html: `
-        <h2>Nuova richiesta d'ordine ricevuta dal sito</h2>
+        <h2>Nuova richiesta ordine ricevuta</h2>
         <p><strong>Prodotto:</strong> ${prodotto} (${prezzo})</p>
         <hr />
         <h3>Dati Cliente:</h3>
         <p><strong>Nome:</strong> ${name}</p>
-        <p><strong>Email cliente:</strong> ${email}</p>
+        <p><strong>Email:</strong> ${email}</p>
         <p><strong>Telefono:</strong> ${phone || 'Non specificato'}</p>
-        <br />
-        <p><strong>Note / Messaggio:</strong></p>
-        <p>${message || 'Nessuna nota aggiuntiva'}</p>
+        <p><strong>Messaggio:</strong> ${message || 'Nessuna nota'}</p>
       `,
     });
 
-    return new Response(JSON.stringify({ success: true }), {
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return Response.json({ success: true });
   } catch (error) {
-    return new Response(
-      JSON.stringify({ success: false, error: error.message }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
+    return Response.json({ success: false, error: error.message }, { status: 500 });
   }
 }

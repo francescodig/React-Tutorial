@@ -31,31 +31,24 @@ export default function ProductModal({ product, onClose }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus('submitting');
+  e.preventDefault();
+  setStatus('submitting');
 
-    try {
-      // Inoltra i dati alla funzione Serverless di Cloudflare Pages (/api/send-order)
-      const response = await fetch('/api/send-order', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          prodotto: product.name,
-          prezzo: product.price,
-          ...formData,
-        }),
-      });
+  try {
+    // Nel caso di server Express esterno usa l'URL completo (es. 'https://api.tuosite.com/api/send-order')
+    const response = await fetch('/api/send-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        prodotto: product.name,
+        prezzo: product.price,
+        ...formData,
+      }),
+    });
 
-      const result = await response.json();
-      if (result.success) {
-        setStatus('success');
-      } else {
-        setStatus('error');
-      }
-    } catch (error) {
-      console.error("Errore durante l'invio dell'ordine:", error);
+      const data = await response.json();
+      setStatus(data.success ? 'success' : 'error');
+    } catch {
       setStatus('error');
     }
   };
