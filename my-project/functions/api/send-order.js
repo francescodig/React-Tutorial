@@ -10,10 +10,10 @@ export async function onRequestPost(context) {
       host: context.env.SMTP_HOST,
       port: 465,
       secure: true,
-      auth: {
-        user: context.env.SMTP_USER,
-        pass: context.env.SMTP_PASS,
-      },
+      connectionTimeout: 3000,
+      greetingTimeout: 3000,
+      socketTimeout: 3000,
+      auth: { user: context.env.SMTP_USER, pass: context.env.SMTP_PASS }
     });
 
     // Invia la mail
@@ -37,5 +37,10 @@ export async function onRequestPost(context) {
     return Response.json({ success: true });
   } catch (error) {
     return Response.json({ success: false, error: error.message }, { status: 500 });
+  } finally {
+    // Chiudi la connessione SMTP
+    if (transporter) {
+      transporter.close();
+    }
   }
 }
