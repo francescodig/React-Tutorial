@@ -37,10 +37,8 @@ export default function Catalog() {
       body: JSON.stringify({
         type: 'custom', 
         prodotto: 'Progetto Su Misura / Idea Personalizzata',
-        prezzo: 'Su Preventivo',
         name: formData.name,
         email: formData.email,
-        phone: formData.phone,
         message: formData.idea,
       }),
     });

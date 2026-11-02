@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom';
 import products from '../products.json';
 
 export default function Home() {
-
-
   const duplicatedImages = [...products, ...products]; // Duplica l'array per creare l'effetto di scorrimento continuo
 
   return (
@@ -12,10 +10,10 @@ export default function Home() {
       {/* 1. HERO CON SFONDO A FOTO INTERA */}
       <section className="relative min-h-[calc(100svh-4rem)] flex items-center justify-center overflow-hidden">
         <img
-            src="/images/sfondo.jpeg"
-            alt="Borse artigianali Fili e Capricci"
-            className="absolute inset-0 w-full h-full object-cover object-[center_35%]"
-            loading="eager"
+          src="/images/sfondo.jpeg"
+          alt="Borse artigianali Fili e Capricci"
+          className="absolute inset-0 w-full h-full object-cover object-[center_35%]"
+          loading="eager"
         />
         
         <div className="absolute inset-0 bg-neutral-950/40 backdrop-blur-[2px]"></div>
@@ -34,24 +32,18 @@ export default function Home() {
             Pezzi unici nati da una lavorazione lenta. Ogni borsa è realizzata su ordinazione per durare nel tempo.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <div className="flex justify-center pt-4">
             <Link
               to="/catalogo"
               className="w-full sm:w-auto inline-flex justify-center items-center px-8 py-4 rounded-full text-xs uppercase tracking-widest font-medium bg-white text-neutral-950 hover:bg-neutral-100 transition-colors duration-200 shadow-lg"
             >
               Esplora la Collezione
             </Link>
-            <a
-              href="mailto:ordini@filiecapricci.it"
-              className="w-full sm:w-auto inline-flex justify-center items-center px-8 py-4 rounded-full text-xs uppercase tracking-widest font-medium border border-white/40 text-white hover:bg-white/10 transition-colors duration-200 backdrop-blur-sm"
-            >
-              Richiedi su Misura
-            </a>
           </div>
         </div>
       </section>
 
-        {/* 2. IL VALORE ARTIGIANALE */}
+      {/* 2. IL VALORE ARTIGIANALE */}
       <section className="bg-[#F2EFE9] border-y border-[#E5DFD5] py-20 px-6">
         <div className="max-w-7xl mx-auto">
           
@@ -110,13 +102,13 @@ export default function Home() {
             {duplicatedImages.map((item, index) => (
               <div key={`${item.id}-${index}`} className="w-[300px] sm:w-[380px] flex-shrink-0 group cursor-pointer">
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-[#EFECE6] mb-4 shadow-sm">
-                <Link to="/catalogo" className="w-full h-full block">
-                  <img
-                    src={item.images[0] || item.images}
-                    alt={item.name}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                  />
-                </Link>
+                  <Link to="/catalogo" className="w-full h-full block">
+                    <img
+                      src={item.images[0] || item.images}
+                      alt={item.name}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                    />
+                  </Link>
                 </div>
                 <h4 className="font-serif text-lg font-medium text-[#181615]">{item.name}</h4>
                 <p className="text-xs text-[#7C7267] uppercase tracking-wider mt-0.5">{item.price}</p>

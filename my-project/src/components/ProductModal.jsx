@@ -4,7 +4,7 @@ export default function ProductModal({ product, onClose }) {
   if (!product) return null;
 
   const images = product.images || (product.image ? [product.image] : []);
-  
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showForm, setShowForm] = useState(false);
   const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'error'
@@ -20,7 +20,7 @@ export default function ProductModal({ product, onClose }) {
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
@@ -31,60 +31,68 @@ export default function ProductModal({ product, onClose }) {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setStatus('submitting');
+    e.preventDefault();
+    setStatus('submitting');
 
-  try {
-    const response = await fetch('/api/send-order', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        prodotto: product.name,
-        prezzo: product.price,
-        ...formData,
-      }),
-    });
+    try {
+      const response = await fetch('/api/send-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prodotto: product.name,
+          prezzo: product.price,
+          ...formData,
+        }),
+      });
 
-      const data = await response.json();
-      setStatus(data.success ? 'success' : 'error');
+      const responseText = await response.text();
+      const data = responseText ? JSON.parse(responseText) : {};
+
+      if (response.ok && data.success) {
+        setStatus('success');
+      } else {
+        setStatus('error');
+      }
     } catch {
       setStatus('error');
     }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full relative overflow-hidden flex flex-col md:flex-row h-[80vh] md:h-auto max-h-[600px]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
+      {/* Contenitore Modale con max-h-[90vh] per evitare uscite dallo schermo su mobile */}
+      <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full relative overflow-hidden flex flex-col md:flex-row max-h-[90vh] md:max-h-[600px]">
         
-        {/* Pulsante Chiudi */}
-        <button 
-          onClick={onClose} 
-          className="absolute top-4 right-4 z-20 bg-white rounded-full p-2 text-gray-500 hover:text-black shadow-sm"
+        {/* Pulsante Chiudi - z-30 per restare sempre in primo piano */}
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 z-30 bg-white/90 backdrop-blur-md rounded-full p-2 text-gray-600 hover:text-black shadow-md transition-all"
           aria-label="Chiudi finestra"
         >
           ✕
         </button>
 
-        {/* SEZIONE GALLERY (Sinistra) */}
-        <div className="w-full md:w-1/2 h-64 md:h-auto relative overflow-hidden group">
+        {/* SEZIONE GALLERY (Sopra su mobile, Sinistra su desktop) */}
+        {/* aspect-square su mobile evita il taglio rettangolare stretto */}
+        <div className="w-full md:w-1/2 aspect-square sm:aspect-[4/3] md:aspect-auto relative overflow-hidden shrink-0 group bg-gray-100">
           {images.length > 0 ? (
             <>
-              <img 
-                src={images[currentIndex]} 
-                alt={`${product.name} - Vista ${currentIndex + 1}`} 
-                className="w-full h-full object-cover transition-all duration-500 ease-in-out" 
+              <img
+                src={images[currentIndex]}
+                alt={`${product.name} - Vista ${currentIndex + 1}`}
+                className="w-full h-full object-cover object-center transition-all duration-500 ease-in-out"
               />
 
               {images.length > 1 && (
                 <>
-                  <button 
+                  <button
                     onClick={prevSlide}
                     className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md z-10 transition-colors"
                     aria-label="Foto precedente"
                   >
                     ❮
                   </button>
-                  <button 
+                  <button
                     onClick={nextSlide}
                     className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md z-10 transition-colors"
                     aria-label="Foto successiva"
@@ -98,9 +106,9 @@ export default function ProductModal({ product, onClose }) {
                         key={index}
                         onClick={() => setCurrentIndex(index)}
                         className={`w-2 h-2 rounded-full transition-all ${
-                          index === currentIndex 
-                            ? "bg-white scale-125" 
-                            : "bg-white/50 hover:bg-white/85"
+                          index === currentIndex
+                            ? 'bg-white scale-125'
+                            : 'bg-white/50 hover:bg-white/85'
                         }`}
                         aria-label={`Vai alla foto ${index + 1}`}
                       />
@@ -116,10 +124,11 @@ export default function ProductModal({ product, onClose }) {
           )}
         </div>
 
-        {/* SEZIONE DETTAGLI / FORM (Destra) */}
-        <div className="w-full md:w-1/2 p-8 flex flex-col justify-between overflow-y-auto">
+        {/* SEZIONE DETTAGLI / FORM (Sotto su mobile, Destra su desktop) */}
+        {/* overflow-y-auto permette lo scroll se il contenuto supera l'altezza disponibile */}
+        <div className="w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
           {status === 'success' ? (
-            <div className="my-auto text-center space-y-4">
+            <div className="my-auto text-center space-y-4 py-6">
               <div className="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold">
                 ✓
               </div>
@@ -143,7 +152,7 @@ export default function ProductModal({ product, onClose }) {
                 >
                   ← Torna ai dettagli
                 </button>
-                
+
                 <h3 className="text-2xl font-serif text-gray-900 mb-1">Richiedi {product.name}</h3>
                 <p className="text-xs text-gray-500 mb-4">Compila i tuoi dati per inviare l'ordine d'acquisto.</p>
 
@@ -224,29 +233,29 @@ export default function ProductModal({ product, onClose }) {
               </button>
             </div>
           ) : (
-            <>
+            <div className="flex flex-col h-full justify-between space-y-4">
               <div>
-                <h2 className="text-3xl font-serif text-gray-900 mb-2">{product.name}</h2>
-                <p className="text-sm text-pink-500 uppercase tracking-widest font-semibold mb-6">
+                <h2 className="text-2xl sm:text-3xl font-serif text-gray-900 mb-1">{product.name}</h2>
+                <p className="text-xs text-pink-500 uppercase tracking-widest font-semibold mb-4">
                   Su Ordinazione
                 </p>
-                <p className="text-gray-600 text-[15px] leading-relaxed whitespace-pre-line mb-6">
+                <p className="text-gray-600 text-sm sm:text-[15px] leading-relaxed whitespace-pre-line mb-4">
                   {product.description}
                 </p>
-                <div className="bg-gray-50 p-4 rounded-lg text-sm text-gray-600 mb-6 space-y-2">
+                <div className="bg-gray-50 p-4 rounded-lg text-xs sm:text-sm text-gray-600 mb-4 space-y-2">
                   <p><strong>Dettagli:</strong> {product.details}</p>
-                  <p><strong>Tempi di realizzazione:</strong> {product.madeTime}.</p>
+                  <p><strong>Tempi di realizzazione:</strong> {product.madeTime || product.leadTime}.</p>
                   <p><strong>Prezzo:</strong> {product.price}</p>
                 </div>
               </div>
 
-              <button 
+              <button
                 onClick={() => setShowForm(true)}
-                className="w-full block text-center bg-gray-900 text-white py-4 rounded-md font-medium text-lg hover:bg-gray-800 transition-colors shadow-md"
+                className="w-full block text-center bg-gray-900 text-white py-3.5 rounded-md font-medium text-base hover:bg-gray-800 transition-colors shadow-md"
               >
                 Richiedi questa borsa
               </button>
-            </>
+            </div>
           )}
         </div>
 
