@@ -35,6 +35,7 @@ export default function Catalog() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        type: 'custom', 
         prodotto: 'Progetto Su Misura / Idea Personalizzata',
         prezzo: 'Su Preventivo',
         name: formData.name,
@@ -57,7 +58,7 @@ export default function Catalog() {
       setStatus({ loading: false, success: false, error: err.message });
     }
   };
-  
+
   return (
     <div className="min-h-screen bg-calce text-carbone antialiased relative">
       

@@ -1,5 +1,3 @@
-import nodemailer from 'nodemailer';
-
 export async function onRequestPost(context) {
   try {
     const { TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID } = context.env || {};
@@ -12,15 +10,29 @@ export async function onRequestPost(context) {
     }
 
     const body = await context.request.json();
-    const { prodotto, prezzo, name, email, phone, message } = body;
+    const { type, prodotto, prezzo, name, email, phone, message } = body;
 
-    // Formattazione del messaggio in Markdown
-    const text = `🛍️ *NUOVO ORDINE RICEVUTO*\n\n` +
-                 `*Prodotto:* ${prodotto || 'N/D'} (${prezzo || 'N/D'})\n` +
-                 `*Cliente:* ${name || 'N/D'}\n` +
-                 `*Email:* ${email || 'N/D'}\n` +
-                 `*Telefono:* ${phone || 'Non indicato'}\n` +
-                 `*Messaggio:* ${message || 'Nessuna nota'}`;
+    // Riconosce se è una richiesta personalizzata
+    const isCustomRequest = type === 'custom' || prodotto === 'Progetto Su Misura / Idea Personalizzata';
+
+    let text = '';
+
+    if (isCustomRequest) {
+      // Template per la modale "Raccontami la tua idea"
+      text = `💡 *NUOVA PROPOSTA PERSONALIZZATA*\n\n` +
+             `*Cliente:* ${name || 'N/D'}\n` +
+             `*Email:* ${email || 'N/D'}\n` +
+             `*Telefono:* ${phone || 'Non indicato'}\n\n` +
+             `*Descrizione dell'idea:*\n${message || 'Nessun dettaglio fornito'}`;
+    } else {
+      // Template per gli ordini classici da catalogo
+      text = `🛍️ *NUOVO ORDINE DA CATALOGO*\n\n` +
+             `*Prodotto:* ${prodotto || 'N/D'} (${prezzo || 'N/D'})\n` +
+             `*Cliente:* ${name || 'N/D'}\n` +
+             `*Email:* ${email || 'N/D'}\n` +
+             `*Telefono:* ${phone || 'Non indicato'}\n` +
+             `*Messaggio:* ${message || 'Nessuna nota'}`;
+    }
 
     // Chiamata HTTP nativa all'API di Telegram
     const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
