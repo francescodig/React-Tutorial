@@ -22,7 +22,6 @@ export async function onRequestPost(context) {
       text = `💡 *NUOVA PROPOSTA PERSONALIZZATA*\n\n` +
              `*Cliente:* ${name || 'N/D'}\n` +
              `*Email:* ${email || 'N/D'}\n` +
-             `*Telefono:* ${phone || 'Non indicato'}\n\n` +
              `*Descrizione dell'idea:*\n${message || 'Nessun dettaglio fornito'}`;
     } else {
       // Template per gli ordini classici da catalogo
