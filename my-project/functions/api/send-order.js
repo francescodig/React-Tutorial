@@ -1,14 +1,12 @@
 import nodemailer from 'nodemailer';
 
 export async function onRequestPost(context) {
-  let transporter = null; // Dichiarazione nello scope principale della funzione
-
   try {
-    const { SMTP_HOST, SMTP_USER, SMTP_PASS } = context.env || {};
+    const { TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID } = context.env || {};
 
-    if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
+    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
       return Response.json(
-        { success: false, error: 'Variabili d\'ambiente SMTP non trovate in context.env' },
+        { success: false, error: 'Variabili TELEGRAM_BOT_TOKEN e TELEGRAM_CHAT_ID non trovate su Cloudflare.' },
         { status: 500 }
       );
     }
@@ -16,48 +14,40 @@ export async function onRequestPost(context) {
     const body = await context.request.json();
     const { prodotto, prezzo, name, email, phone, message } = body;
 
-    // Assegnazione della variabile esterna senza ridefinirla con "const" o "let"
-    transporter = nodemailer.createTransport({
-      host: SMTP_HOST,
-      port: 465,
-      secure: true,
-      connectionTimeout: 5000,
-      greetingTimeout: 5000,
-      socketTimeout: 5000,
-      auth: {
-        user: SMTP_USER,
-        pass: SMTP_PASS,
-      },
+    // Formattazione del messaggio in Markdown
+    const text = `🛍️ *NUOVO ORDINE RICEVUTO*\n\n` +
+                 `*Prodotto:* ${prodotto || 'N/D'} (${prezzo || 'N/D'})\n` +
+                 `*Cliente:* ${name || 'N/D'}\n` +
+                 `*Email:* ${email || 'N/D'}\n` +
+                 `*Telefono:* ${phone || 'Non indicato'}\n` +
+                 `*Messaggio:* ${message || 'Nessuna nota'}`;
+
+    // Chiamata HTTP nativa all'API di Telegram
+    const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: text,
+        parse_mode: 'Markdown'
+      })
     });
 
-    await transporter.sendMail({
-      from: `"Sito Serena" <${SMTP_USER}>`,
-      to: SMTP_USER,
-      replyTo: email,
-      subject: `Nuova richiesta ordine: ${prodotto || 'Prodotto'}`,
-      html: `
-        <h2>Nuova richiesta d'ordine</h2>
-        <p><strong>Prodotto:</strong> ${prodotto || 'N/D'} (${prezzo || 'N/D'})</p>
-        <p><strong>Cliente:</strong> ${name || 'N/D'}</p>
-        <p><strong>Email cliente:</strong> ${email || 'N/D'}</p>
-        <p><strong>Telefono:</strong> ${phone || 'Non indicato'}</p>
-        <p><strong>Messaggio:</strong> ${message || 'Nessuna nota'}</p>
-      `,
-    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      return Response.json(
+        { success: false, error: data.description || 'Errore durante l\'invio del messaggio a Telegram' },
+        { status: response.status }
+      );
+    }
 
     return Response.json({ success: true });
+
   } catch (error) {
     return Response.json(
-      { success: false, error: error.message || 'Errore durante l\'invio dell\'email' },
+      { success: false, error: error.message || 'Errore interno della funzione' },
       { status: 500 }
     );
-  } finally {
-    if (transporter) {
-      try {
-        transporter.close();
-      } catch {
-        // Ignora eventuali errori durante la disconnessione del socket
-      }
-    }
   }
 }
