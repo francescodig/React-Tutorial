@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  /* Mantieni qui i colori della tua palette (spero tu sia tornato al color Calce!) */
+  --color-calce: #F9F8F6;    
+  --color-carbone: #181615;  
+  --color-tortora: #7C7267;  
+  --color-sabbia: #E5DFD5;   
+  --color-moka: #524B44;     
+}
+
+@layer base {
+  body {
+    /* Il font per i paragrafi e i testi lunghi */
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--color-calce);
+    color: var(--color-carbone);
+  }
+
+  /* Applichiamo Julius automaticamente a tutti i titoli */
+  h1, h2, h3, .font-display {
+    font-family: 'Julius Sans One', sans-serif;
+    letter-spacing: 0.05em; /* Aggiunge un po' di respiro tra le lettere */
+    font-weight: 400;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+/* Pausa elegante quando l'utente passa sopra con il cursore */
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

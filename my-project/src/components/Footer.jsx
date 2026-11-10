@@ -1,0 +1,41 @@
+import { Link } from 'react-router-dom';
+
+export default function Footer() {
+  return (
+    <footer className="w-full bg-calce border-t border-sabbia py-12 px-6 mt-auto">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+        
+        
+        <div className="flex flex-col items-center md:items-start">
+          <Link to="/" className="font-display text-2xl text-carbone tracking-tight hover:opacity-80 transition-opacity">
+            ACTJTUDE
+          </Link>
+        </div>
+
+        
+        <div className="flex gap-8 text-xs font-medium uppercase tracking-widest text-moka">
+          <a 
+            href="https://www.instagram.com/actjtude_/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="hover:text-carbone transition-colors"
+          >
+            Instagram
+          </a>
+          <a 
+            href="mailto:info@actjtude.com" 
+            className="hover:text-carbone transition-colors"
+          >
+            Contatto Mail
+          </a>  
+        </div>
+
+        {/* Chiusura e Diritti */}
+        <div className="text-[11px] text-tortora tracking-wide">
+          © {new Date().getFullYear()} ACTJTUDE. 
+        </div>
+
+      </div>
+    </footer>
+  );
+}
